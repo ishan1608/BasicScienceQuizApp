@@ -46,7 +46,8 @@ var initialize_question = function (number) {
     document.getElementById("option_4_text").innerText = "D : " + questionSet[5];
     
     // Timer to be used
-    var seconds_left = TIME_PER_QUESTION + 1;
+    var seconds_left = TIME_PER_QUESTION;
+    document.getElementById("timer").innerText = "00:" + seconds_left;
     var interval = setInterval(function() {
         seconds_left = seconds_left - 1;
         if((currentQuestion == number) && (!opted)) {
@@ -71,7 +72,7 @@ var initialize_question = function (number) {
             document.getElementById("timer").innerText = "Time Expired";
             waitAndNext(false);
         }
-    }, (TIME_PER_QUESTION + 1) * 1000);
+    }, (TIME_PER_QUESTION) * 1000);
 };
 
 var initialize = function () {
@@ -158,6 +159,8 @@ var waitAndNext = function (what) {
     
     if (what) {
         // Audio
+        var audio = new Audio('data/test_cbr.mp3');
+        audio.play();
     } else {
         // Vibrate
         navigator.vibrate(1000);
