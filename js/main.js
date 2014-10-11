@@ -6,6 +6,7 @@ var currentQuestion = 0;
 var numberOfQuestions = 0;
 var MAX_QUESTIONS = 5;
 var TIME_PER_QUESTION = 5;
+var VIBRATION_TIME = 250;
 
 var i = 0;
 var start_button;
@@ -77,7 +78,7 @@ var initialize_question = function (number) {
                 answer = dataBank.data[currentQuestion - 1][6];
                 document.getElementById("option_" + answer).style.color = "green";
                 // Vibrate
-                navigator.vibrate(1000);
+                navigator.vibrate(VIBRATION_TIME);
             },500);
         }
     }, (TIME_PER_QUESTION) * 1000);
@@ -179,7 +180,7 @@ var waitAndNext = function (what) {
         audio.play();
     } else {
         // Vibrate
-        navigator.vibrate(1000);
+        navigator.vibrate(VIBRATION_TIME);
     }
     
     // Waiting and calling next question
