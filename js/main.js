@@ -54,7 +54,7 @@ var initialize_question = function (number) {
             document.getElementById("timer").innerText = "00:" + seconds_left;
         }
 
-        if (seconds_left <= 0)
+        if (seconds_left <= 1)
         {
             clearInterval(interval);
         }
@@ -64,15 +64,29 @@ var initialize_question = function (number) {
     // WIP
     setTimeout(function () {
         // alert('curr : '+currentQuestion + '\nnum : '+ number);
-        if(currentQuestion === number) {
+        if((currentQuestion === number) && (!opted)) {
             // Just to be on the safe side
             optionsEnabler(false);
             
             wrongAnswers = wrongAnswers + 1;
             document.getElementById("timer").innerText = "Time Expired";
-            waitAndNext(false);
+            
+            // Displaying the correct answer
+            // W.I.P.
+            setTimeout(function () {
+                answer = dataBank.data[currentQuestion - 1][6];
+                document.getElementById("option_" + answer).style.color = "green";
+            },500);
         }
-    }, (TIME_PER_QUESTION + 2) * 1000);
+    }, (TIME_PER_QUESTION) * 1000);
+    
+    setTimeout(function () {
+        // alert('curr : '+currentQuestion + '\nnum : '+ number);
+        if(currentQuestion === number) {
+            // waitAndNext(false);
+            nextWithoutWait(false);
+        }
+    }, (TIME_PER_QUESTION + 2.5) * 1000);
 };
 
 var initialize = function () {
@@ -175,6 +189,28 @@ var waitAndNext = function (what) {
             nextQuestion();
         }
     }, 2500);
+};
+
+var nextWithoutWait = function (what) {
+    // Disabling the further selection of options
+    optionsEnabler(false);
+    
+    if (what) {
+        // Audio
+        var audio = new Audio('data/test_cbr.mp3');
+        audio.play();
+    } else {
+        // Vibrate
+        navigator.vibrate(1000);
+    }
+    
+    // Calling next question
+    if (numberOfQuestions === MAX_QUESTIONS) {
+        finishGame();
+        return;
+    } else {
+        nextQuestion();
+    }
 };
 
 var selection = function (option) {
