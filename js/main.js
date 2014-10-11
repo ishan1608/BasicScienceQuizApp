@@ -54,7 +54,7 @@ var initialize_question = function (number) {
             document.getElementById("timer").innerText = "00:" + seconds_left;
         }
 
-        if (seconds_left <= 1)
+        if (seconds_left <= 0)
         {
             clearInterval(interval);
         }
@@ -72,7 +72,7 @@ var initialize_question = function (number) {
             document.getElementById("timer").innerText = "Time Expired";
             waitAndNext(false);
         }
-    }, (TIME_PER_QUESTION) * 1000);
+    }, (TIME_PER_QUESTION + 2) * 1000);
 };
 
 var initialize = function () {
