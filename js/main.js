@@ -76,6 +76,8 @@ var initialize_question = function (number) {
             setTimeout(function () {
                 answer = dataBank.data[currentQuestion - 1][6];
                 document.getElementById("option_" + answer).style.color = "green";
+                // Vibrate
+                navigator.vibrate(1000);
             },500);
         }
     }, (TIME_PER_QUESTION) * 1000);
@@ -194,15 +196,6 @@ var waitAndNext = function (what) {
 var nextWithoutWait = function (what) {
     // Disabling the further selection of options
     optionsEnabler(false);
-    
-    if (what) {
-        // Audio
-        var audio = new Audio('data/test_cbr.mp3');
-        audio.play();
-    } else {
-        // Vibrate
-        navigator.vibrate(1000);
-    }
     
     // Calling next question
     if (numberOfQuestions === MAX_QUESTIONS) {
