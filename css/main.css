@@ -393,3 +393,20 @@ nav a:hover {
         page-break-after: avoid;
     }
 }
+#splah_screen {
+    background-image: url(/img/starsolid.gif);
+    background-repeat: repeat;
+}
+
+
+
+
+
+#start_buttons_holder {
+    display: none;
+}
+
+#instructions_screen {
+    padding: 5%;
+    display: none;
+}

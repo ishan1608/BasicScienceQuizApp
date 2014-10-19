@@ -7,6 +7,7 @@ var numberOfQuestions = 0;
 var MAX_QUESTIONS = 5;
 var TIME_PER_QUESTION;
 var VIBRATION_TIME = 250;
+var SPLASH_TIME = 3000;
 
 var i = 0;
 var start_button;
@@ -123,8 +124,9 @@ var initialize_display = function () {
     main_element.style.display = 'block';
     
     // Hiding Start Buttons
-    $('.start_buttons')[0].style.display = 'none';
-    $('.start_buttons')[1].style.display = 'none';
+    // $('.start_buttons')[0].style.display = 'none';
+    // $('.start_buttons')[1].style.display = 'none';
+    $('#start_buttons_holder')[0].style.display = 'none';
     
     resetOptions();
 };
@@ -264,3 +266,19 @@ var finishGame = function () {
 
 // Enabling the options for the first execution of the game
 optionsEnabler(true);
+
+var timeSelectorScreen = function() {
+    $("#instructions_screen")[0].style.display = 'none';
+    $("#start_buttons_holder")[0].style.display = 'block';
+};
+
+// Instructions continue button
+$( "body" ).on( "click", "#instruction_continue_button", function () {
+    timeSelectorScreen();
+} );
+
+// Splash Screen
+setTimeout(function () {
+    $("#splah_screen")[0].style.display = 'none';
+    $("#instructions_screen")[0].style.display = 'block';
+}, SPLASH_TIME);
