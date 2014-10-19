@@ -5,7 +5,7 @@ var questionNumber;
 var currentQuestion = 0;
 var numberOfQuestions = 0;
 var MAX_QUESTIONS = 5;
-var TIME_PER_QUESTION = 5;
+var TIME_PER_QUESTION;
 var VIBRATION_TIME = 250;
 
 var i = 0;
@@ -122,9 +122,9 @@ var initialize_display = function () {
     main_element = main_element[0];
     main_element.style.display = 'block';
     
-    // Hiding Start Button
-    start_button = document.getElementById("start_button");
-    start_button.style.display = 'none';
+    // Hiding Start Buttons
+    $('.start_buttons')[0].style.display = 'none';
+    $('.start_buttons')[1].style.display = 'none';
     
     resetOptions();
 };
@@ -237,18 +237,23 @@ var selection = function (option) {
 };
 
 // Start of the game
-var start = function () {
+var start = function (time) {
     initialize();
     numberOfQuestions = 1;
     initialize_display();
-    
+    TIME_PER_QUESTION = time;
     // I am leaving it for future
     // If not chosen an option go to next
     // window.setTimeout(nextQuestion, 10000);
 };
 
-// Start Button
-document.getElementById("start_button").onclick = start;
+// Start Buttons
+document.getElementById("start_button").onclick = function() {
+    start(5);
+};
+document.getElementById("start_button1").onclick = function() {
+    start(10);
+};
 
 var finishGame = function () {
     // Increasing the currentQuestion so that it doesn't times out
