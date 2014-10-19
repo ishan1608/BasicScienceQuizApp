@@ -279,6 +279,6 @@ $( "body" ).on( "click", "#instruction_continue_button", function () {
 
 // Splash Screen
 setTimeout(function () {
-    $("#splah_screen")[0].style.display = 'none';
+    $("#splash_screen")[0].style.display = 'none';
     $("#instructions_screen")[0].style.display = 'block';
 }, SPLASH_TIME);
